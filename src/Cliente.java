@@ -8,5 +8,7 @@ public Cliente (String nome, String cpf){
     this.cpf = cpf;
 }
 
+public void adicionarPedido(Pedido pedido)
+
 
 }
