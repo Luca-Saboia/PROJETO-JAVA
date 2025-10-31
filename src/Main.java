@@ -3,19 +3,6 @@ public class Main {
     
     static Scanner entrada = new Scanner(System.in);
 
-    public static void cadastrarCliente(Teatro teatro){
-        
-        System.out.println("***CADASTRO CLIENTE***");
-        System.out.println("Nome do cliente: ");
-        String nomeCliente = entrada.nextLine();
-        System.out.println("CPF do cliente");
-        String cpf = entrada.nextLine();
-        Cliente cliente = new Cliente(nomeCliente, cpf);
-        teatro.cadastrarCliente(cliente);
-        
-    }
-
-
     public static void espetaculo(Teatro teatro){
             
         System.out.println("***CADASTRO ESPETÁCULO***");
@@ -30,6 +17,21 @@ public class Main {
         Espetaculo espetaculo = new Espetaculo(nomeEspetaculo, hora, data, precoEntrada);
         teatro.cadastrarEspetaculo(espetaculo);
     }
+    
+    
+    
+    public static void cadastrarCliente(Teatro teatro){
+        
+        System.out.println("***CADASTRO CLIENTE***");
+        System.out.println("Nome do cliente: ");
+        String nomeCliente = entrada.nextLine();
+        System.out.println("CPF do cliente");
+        String cpf = entrada.nextLine();
+        Cliente cliente = new Cliente(nomeCliente, cpf);
+        teatro.cadastrarCliente(cliente);
+        
+    }
+
 
 
     public static void main(String[] args) {

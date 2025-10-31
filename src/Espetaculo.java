@@ -15,24 +15,32 @@ public class Espetaculo{
         this.preco = preco;
     }
 
-    public void apresentaAssentos(){
-
-    }
 
     public Entrada novaEntrada(int tipo, int assento){
 
     }
 
+
+    public void apresentaAssentos(){
+        
+
+    }
+
+
+    private void marcarAssento(int assento){
+        
+    }
+
+    
+
     public double getPreco(double preco){
         return preco;
     }
 
+    
+
+    @Override
     public String toString(){
-
-    }
-
-    private void marcarAssento(int assento){
-
 
     }
 

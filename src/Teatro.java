@@ -12,6 +12,14 @@ public class Teatro{
         clientes = new ArrayList<>(); 
     }
 
+    public void cadastrarEspetaculo(Espetaculo espetaculo){
+        espetaculos.add(espetaculo);
+    }
+
+    public void cadastrarCliente(Cliente cliente){
+        clientes.add(cliente);
+    }
+
     public void novaCompra(){
 
     }
@@ -28,18 +36,13 @@ public class Teatro{
 
     }
 
-    public double finalizaCompra(String cpf){
+    public double finalizarCompra(String cpf){
         
     }
 
-    public void cadastrarEspetaculo(Espetaculo espetaculo){
-        espetaculos.add(espetaculo);
-
-    }
     
-    public void cadastrarCliente(Cliente cliente){
-        clientes.add(cliente);
-    }
+    
+    
 
     
 }
