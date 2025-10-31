@@ -1,10 +1,15 @@
+import java.util.ArrayList;
+
 public class Teatro{
     private Pedido carrinho = null;
     private Espetaculo espetaculoSelecionado = null;
+    private  ArrayList <Espetaculo> espetaculos;
+    private ArrayList <Cliente> clientes;
 
-    public teatro(Pedido carrinho, Espetaculo espetaculoSelecionado){
-        this.carrinho = carrinho;
-        this.espetaculoSelecionado = espetaculoSelecionado;
+
+    public Teatro(){
+        espetaculos = new ArrayList<>();
+        clientes = new ArrayList<>(); 
     }
 
     public void novaCompra(){
@@ -26,4 +31,15 @@ public class Teatro{
     public double finalizaCompra(String cpf){
         
     }
+
+    public void cadastrarEspetaculo(Espetaculo espetaculo){
+        espetaculos.add(espetaculo);
+
+    }
+    
+    public void cadastrarCliente(Cliente cliente){
+        clientes.add(cliente);
+    }
+
+    
 }

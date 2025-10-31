@@ -1,37 +1,40 @@
 import java.util.Scanner;
 public class Main {
-    static String nomeCliente;
-    static String cpf;
-    static String hora;
-    static String data;
-    static String nomeEspetaculo;
-    static double precoEntrada;
+    
     static Scanner entrada = new Scanner(System.in);
 
-    public static void cadastrarCliente(){
+    public static void cadastrarCliente(Teatro teatro){
+        
         System.out.println("***CADASTRO CLIENTE***");
         System.out.println("Nome do cliente: ");
-        nomeCliente = entrada.nextLine();
+        String nomeCliente = entrada.nextLine();
         System.out.println("CPF do cliente");
-        cpf = entrada.nextLine();
-        Cliente c1 = new Cliente(nomeCliente, cpf);
+        String cpf = entrada.nextLine();
+        Cliente cliente = new Cliente(nomeCliente, cpf);
+        teatro.cadastrarCliente(cliente);
+        
     }
 
-        public static void espetaculo(){
+
+    public static void espetaculo(Teatro teatro){
             
         System.out.println("***CADASTRO ESPETÁCULO***");
         System.out.println("Nome do espetacúlo:");
-        nomeEspetaculo = entrada.nextLine();
+        String nomeEspetaculo = entrada.nextLine();
         System.out.println("Data do Espetáculo:");
-        data = entrada.nextLine();
+        String data = entrada.nextLine();
         System.out.println("Hora do Espetáculo:");
-        hora = entrada.nextLine();
+        String hora = entrada.nextLine();
         System.out.println("Preço do Espetáculo:");
-        precoEntrada = entrada.nextDouble();
-        Espetaculo espetaculo1 = new Espetaculo(nomeEspetaculo, hora, data, precoEntrada);
-        }
+        double precoEntrada = entrada.nextDouble();
+        Espetaculo espetaculo = new Espetaculo(nomeEspetaculo, hora, data, precoEntrada);
+        teatro.cadastrarEspetaculo(espetaculo);
+    }
+
+
     public static void main(String[] args) {
         int opcao;
+        Teatro teatro = new Teatro();
         do { 
             System.out.println("*** MACK THEATHER***");
             System.out.println("1) Cadastrar Espetáculo");
@@ -44,11 +47,11 @@ public class Main {
             switch (opcao) {
 
                 case 1: 
-                   espetaculo();
+                   espetaculo(teatro);
                    break;
 
                 case 2:
-                    cadastrarCliente();
+                    cadastrarCliente(teatro);
                     break;
 
                 case 3:
@@ -64,3 +67,5 @@ public class Main {
 
     }
 }
+
+

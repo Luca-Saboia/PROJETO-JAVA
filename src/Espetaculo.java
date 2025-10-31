@@ -5,6 +5,7 @@ public class Espetaculo{
     private String hora;
     private double preco;
     private boolean[] assentos = new boolean[50];
+    
 
 
     public Espetaculo(String nome, String data, String hora, double preco){

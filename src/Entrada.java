@@ -4,5 +4,4 @@ public class Entrada{
     public double calculaValor(){
         Espetaculo.getPreco;
     }
-
 }
