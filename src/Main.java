@@ -34,6 +34,40 @@ public class Main {
 
 
 
+    public static void compraDeEntradas(Teatro teatro){
+        do{
+            System.out.println("*** VENDA DE ENTRADAS – ESPETÁCULOS ***");
+            teatro.apresentaEspetaculos();
+            System.out.println();
+            System.out.print("Selecione um espetáculo: ");
+            int numero = entrada.nextInt();
+            teatro.selecionaEspetaculo(numero);
+            System.out.println();
+            System.out.println("    ||| Assentos Disponíveis |||");
+            System.out.println("    " + Espetaculo.apresentaAssentos);
+            System.out.print("Selecione um assento: ");
+            int assento = entrada.nextInt();
+            Espetaculo.selecionaEspetaculo(assento);
+            System.out.println();
+            System.out.println("    ||| Tipos de Entrada |||");
+            System.out.println("    1) Inteira");
+            System.out.println("    2) Meia 50% do valor da entrada");
+            System.out.println("    3) Professor 40% do valor da entrada");
+            System.out.print("Selecione um tipo de entrada: ");
+            int tipo = entrada.nextInt();
+            Espetaculo.novaEntrada(tipo, assento);
+            System.out.println();
+            System.out.print("Deseja comprar outra entrada (S/N)? ");
+            String outraEntrada = nextLine();
+            String outraEntradaMaiusculo = outraEntrada.toUpperCase();
+        }
+        while (outraEntrada != "N");
+
+    }
+
+
+
+
     public static void main(String[] args) {
         int opcao;
         Teatro teatro = new Teatro();
@@ -57,7 +91,7 @@ public class Main {
                     break;
 
                 case 3:
-                    compraDeEntradas();
+                    compraDeEntradas(teatro);
                     break;
 
                 default:

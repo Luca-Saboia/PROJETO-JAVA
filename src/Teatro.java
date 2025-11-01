@@ -25,10 +25,18 @@ public class Teatro{
     }
 
     public void apresentaEspetaculos(){
+        for (int i = 0; i < espetaculos.size(); i++) {
+            System.out.println(espetaculos.get(i));
+        }
 
     }
 
     public void selecionaEspetaculo(int numero){
+        for (int i = 0; i < espetaculos.size(); i++) {
+            if ((numero - 1) == i){
+                
+            }
+        }
 
     }
 

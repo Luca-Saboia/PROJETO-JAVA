@@ -6,6 +6,7 @@ public class Espetaculo{
     private double preco;
     private boolean[] assentos = new boolean[50];
     
+    
 
 
     public Espetaculo(String nome, String data, String hora, double preco){
@@ -17,17 +18,19 @@ public class Espetaculo{
 
 
     public Entrada novaEntrada(int tipo, int assento){
-
+        
     }
 
 
     public void apresentaAssentos(){
-        
+        for (int i = 0; i < assentos.length; i++){
+            System.out.printf(assentos[i] + " ");
+        }
 
     }
 
 
-    private void marcarAssento(int assento){
+    private void marcaAssento(int assento){
         for (int i = 0; i < assentos.length; i++){
             if ((assento - 1) == i){
                 assentos[i] = false;
