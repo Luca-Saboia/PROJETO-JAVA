@@ -28,7 +28,11 @@ public class Espetaculo{
 
 
     private void marcarAssento(int assento){
-        
+        for (int i = 0; i < assentos.length; i++){
+            if ((assento - 1) == i){
+                assentos[i] = false;
+            }
+        }
     }
 
     
