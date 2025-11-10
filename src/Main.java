@@ -3,7 +3,7 @@ public class Main {
     
     static Scanner entrada = new Scanner(System.in);
 
-    public static void espetaculo(Teatro teatro){
+    public static void cadastrarEspetaculo(Teatro teatro){
             
         System.out.println("***CADASTRO ESPETÁCULO***");
         System.out.println("Nome do espetacúlo:");
@@ -38,14 +38,19 @@ public class Main {
         do{
             Espetaculo espetaculo;
             System.out.println("*** VENDA DE ENTRADAS – ESPETÁCULOS ***");
+            teatro.novaCompra();
             teatro.apresentaEspetaculos();
+
+
             System.out.println();
             System.out.print("Selecione um espetáculo: ");
             int numero = entrada.nextInt();
             teatro.selecionaEspetaculo(numero);
             System.out.println();
+
+
             System.out.println("    ||| Assentos Disponíveis |||");
-            System.out.println("    " + Espetaculo.apresentaAssentos);
+            Espetaculo.apresentaAssentos;
             System.out.print("Selecione um assento: ");
             int assento = entrada.nextInt();
             Espetaculo.selecionaEspetaculo(assento);
@@ -88,7 +93,7 @@ public class Main {
             switch (opcao) {
 
                 case 1: 
-                   espetaculo(teatro);
+                   cadastrarEspetaculo(teatro);
                    break;
 
                 case 2:

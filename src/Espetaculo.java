@@ -5,6 +5,7 @@ public class Espetaculo{
     private String hora;
     private double preco;
     private boolean[] assentos = new boolean[50];
+    Entrada entrada;
     
     
 
@@ -48,7 +49,7 @@ public class Espetaculo{
 
     @Override
     public String toString(){
-
+        return 
     }
 
 

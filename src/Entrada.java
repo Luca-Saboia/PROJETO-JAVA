@@ -1,7 +1,4 @@
-public class Entrada{
+public abstract class Entrada{
     private int numeroDoAssento;
-
-    public double calculaValor(){
-        
-    }
+    public double calculaValor();
 }
