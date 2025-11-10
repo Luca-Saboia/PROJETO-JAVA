@@ -36,6 +36,7 @@ public class Main {
 
     public static void compraDeEntradas(Teatro teatro){
         do{
+            Espetaculo espetaculo;
             System.out.println("*** VENDA DE ENTRADAS – ESPETÁCULOS ***");
             teatro.apresentaEspetaculos();
             System.out.println();
@@ -59,9 +60,13 @@ public class Main {
             System.out.println();
             System.out.print("Deseja comprar outra entrada (S/N)? ");
             String outraEntrada = nextLine();
-            String outraEntradaMaiusculo = outraEntrada.toUpperCase();
+            if (outraEntrada != "N" || outraEntrada != "S" || outraEntrada != "n" || outraEntrada != "s"){
+                System.out.println("Opção invalida digite novamente");
+                System.out.print("Deseja comprar outra entrada (S/N)? ");
+                outraEntrada = nextLine();
+            }
         }
-        while (outraEntrada != "N");
+        while (outraEntrada != "N" || outraEntrada != "n");
 
     }
 
