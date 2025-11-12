@@ -14,6 +14,7 @@ public class Main {
         Locale.setDefault(Locale.US);
         Scanner scanner = new Scanner(System.in);
         Teatro mackTheater = new Teatro();
+        String entrada = scanner.nextLine();
 
         int opcao; // Não é mais necessário inicializar com 0
 
@@ -27,11 +28,14 @@ public class Main {
             System.out.print("Selecione uma opção: "); //
 
             // Tratamento de exceção básico para entrada não numérica
-            try {
-                opcao = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                opcao = 0; // Define uma opção inválida para acionar o 'default'
+            
+
+            if (entrada.matches("\\d+")) { // se for só número
+                opcao = Integer.parseInt(entrada);
+            } else { // se tiver letra ou símbolo
+                opcao = 0;
             }
+
 
             switch (opcao) {
                 case 1:
