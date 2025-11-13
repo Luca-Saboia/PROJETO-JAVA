@@ -1,127 +1,69 @@
+package teatro;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Matrícula e Nome dos Alunos:
- * - 123456 - Aluno 1
- * - 789012 - Aluno 2
- */
 public class Teatro {
-    private Pedido carrinho; // [cite: 40]
-    private Espetaculo espetaculoSelecionado; // [cite: 41]
-    
-    // Atributos adicionados para armazenar os dados do sistema
-    private ArrayList<Espetaculo> espetaculos;
-    private ArrayList<Cliente> clientes;
+    private Pedido carrinho = null;
+    private Espetaculo espetaculoSelecionado = null;
+    private List<Espetaculo> espetaculos = new ArrayList<>();
+    private List<Cliente> clientes = new ArrayList<>();
 
-    public Teatro() { // [cite: 42]
-        this.espetaculos = new ArrayList<>();
-        this.clientes = new ArrayList<>();
-        this.carrinho = null;
-        this.espetaculoSelecionado = null;
+    public Teatro() {}
+
+    public void novaCompra() {
+        carrinho = new Pedido();
+        espetaculoSelecionado = null;
     }
 
-    // --- Métodos de Cadastro (Funcionalidades Iniciais) ---
-    
-    public void cadastrarEspetaculo(String nome, String data, String hora, double preco) { // [cite: 13]
-        Espetaculo novo = new Espetaculo(nome, data, hora, preco);
-        this.espetaculos.add(novo);
-        System.out.println("Espetáculo cadastrado com sucesso!");
-    }
-
-    public void cadastrarCliente(String nome, String cpf) { // [cite: 14]
-        // Verifica se o cliente já existe
-        if (getClientePorCpf(cpf) != null) {
-            System.out.println("Erro: CPF já cadastrado.");
-            return;
-        }
-        Cliente novo = new Cliente(nome, cpf);
-        this.clientes.add(novo);
-        System.out.println("Cliente cadastrado com sucesso!");
-    }
-
-    // --- Métodos do Fluxo de Compra ---
-    
-    public void novaCompra() { // [cite: 43]
-        this.carrinho = new Pedido(); // [cite: 70]
-        this.espetaculoSelecionado = null;
-    }
-
-    public void apresentaEspetaculos() { // [cite: 44]
-        for (int i = 0; i < espetaculos.size(); i++) {
-            // [cite: 131] Utiliza o índice + 1 como número
-            System.out.println((i + 1) + ") " + espetaculos.get(i).toString());
+    public void apresentaEspectaculos() {
+        int i = 1;
+        for (Espetaculo e : espetaculos) {
+            System.out.println(i + ") " + e.toString());
+            i++;
         }
     }
 
-    public boolean temEspetaculos() {
-        return !espetaculos.isEmpty();
+    public void selecionaEspetaculo(int numero) {
+        if (numero >= 1 && numero <= espetaculos.size())
+            espetaculoSelecionado = espetaculos.get(numero - 1);
     }
 
-    public void selecionaEspetaculo(int numero) { // [cite: 45]
-        // Ajusta para o índice (0-based)
-        int indice = numero - 1;
-        if (indice >= 0 && indice < espetaculos.size()) {
-            this.espetaculoSelecionado = espetaculos.get(indice);
-            this.espetaculoSelecionado.apresentaAssentos(); // [cite: 74]
-        } else {
-            System.out.println("Número de espetáculo inválido.");
-        }
-    }
-    
-    public void apresentaAssentosDoSelecionado() {
-        if (this.espetaculoSelecionado != null) {
-            this.espetaculoSelecionado.apresentaAssentos();
-        }
+    public void novaEntrada(int tipo, int assento) {
+        if (espetaculoSelecionado == null || carrinho == null) return;
+        Entrada en = espetaculoSelecionado.novaEntrada(tipo, assento);
+        if (en != null) carrinho.adicionaEntrada(en);
     }
 
-    public void novaEntrada(int tipo, int assento) { // [cite: 45]
-        if (this.espetaculoSelecionado == null) {
-            System.out.println("Erro: Nenhum espetáculo selecionado.");
-            return;
-        }
-        if (this.carrinho == null) {
-            System.out.println("Erro: Nenhuma compra iniciada.");
-            return;
-        }
-
-        // Cria a entrada (polimorfismo)
-        Entrada entrada = this.espetaculoSelecionado.novaEntrada(tipo, assento); // [cite: 80, 93]
-        
-        if (entrada != null) {
-            this.carrinho.adicionaEntrada(entrada); // [cite: 83]
-            System.out.println("Entrada adicionada ao carrinho.");
-        } else {
-            System.out.println("Não foi possível adicionar a entrada (tipo inválido ou assento ocupado).");
-        }
-    }
-
-    public double finalizaCompra(String cpf) { // [cite: 45]
-        Cliente cliente = getClientePorCpf(cpf);
-
+    public double finalizaCompra(String cpf) {
+        if (carrinho == null) return 0.0;
+        Cliente cliente = buscarClientePorCPF(cpf);
         if (cliente == null) {
-            System.out.println("Erro: Cliente com CPF " + cpf + " não encontrado.");
-            return -1; // Retorna -1 para indicar erro
+            carrinho = null;
+            espetaculoSelecionado = null;
+            return -1.0;
         }
-
-        cliente.adicionaPedido(this.carrinho); // [cite: 49, 84]
-        double valorTotal = this.carrinho.calculaValorTotal(); // [cite: 56, 85]
-
-        // Limpa o carrinho e seleção
-        this.carrinho = null;
-        this.espetaculoSelecionado = null;
-
-        return valorTotal;
+        cliente.adicionaPedido(carrinho);
+        for (Entrada e : carrinho.getEntradas())
+            e.espetaculo.marcarAssento(e.getNumeroDoAssento());
+        double total = carrinho.calculaValorTotal();
+        carrinho = null;
+        espetaculoSelecionado = null;
+        return total;
     }
 
-    // --- Métodos Auxiliares ---
-    
-    private Cliente getClientePorCpf(String cpf) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getCpf().equals(cpf)) {
-                return cliente;
-            }
-        }
+    public void adicionaEspetaculo(Espetaculo e) { espetaculos.add(e); }
+    public void adicionaCliente(Cliente c) { clientes.add(c); }
+
+    public Cliente buscarClientePorCPF(String cpf) {
+        for (Cliente c : clientes) if (c.getCpf().equals(cpf)) return c;
         return null;
+    }
+
+    public List<Espetaculo> getEspetaculos() { 
+        return espetaculos; 
+    }
+    public List<Cliente> getClientes() { 
+        return clientes; 
     }
 }

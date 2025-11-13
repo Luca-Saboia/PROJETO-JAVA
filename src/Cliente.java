@@ -1,33 +1,23 @@
+package teatro;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Matrícula e Nome dos Alunos:
- * - 123456 - Aluno 1
- * - 789012 - Aluno 2
- */
-public class Cliente { // [cite: 47]
-    private String nome; // [cite: 46]
-    private String cpf; // [cite: 46]
-    
-    // Armazena o histórico de pedidos do cliente
-    private ArrayList<Pedido> pedidos;
+public class Cliente {
+    private String nome;
+    private String cpf;
+    private List<Pedido> pedidos = new ArrayList<>();
 
-    public Cliente(String nome, String cpf) { // [cite: 48]
+    public Cliente(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
-        this.pedidos = new ArrayList<>();
     }
 
-    public void adicionaPedido(Pedido pedido) { // [cite: 49]
-        this.pedidos.add(pedido);
+    public void adicionaPedido(Pedido pedido) {
+        if (pedido != null) pedidos.add(pedido);
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public String getNome() {
-        return nome;
+    public String getCpf() { 
+        return cpf; 
     }
 }

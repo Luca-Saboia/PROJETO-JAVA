@@ -1,24 +1,17 @@
+package teatro;
 
-/**
- * Matrícula e Nome dos Alunos:
- * - 123456 - Aluno 1
- * - 789012 - Aluno 2
- */
-public abstract class Entrada { // [cite: 51]
-    
-    // Protegido para que as classes filhas possam acessar
-    protected Espetaculo espetaculo; 
-    protected int numeroDoAssento; // [cite: 52]
+public abstract class Entrada {
+    protected int numeroDoAssento;
+    protected Espetaculo espetaculo;
 
-    public Entrada(Espetaculo espetaculo, int numeroDoAssento) {
-        this.espetaculo = espetaculo;
+    public Entrada(int numeroDoAssento, Espetaculo espetaculo) {
         this.numeroDoAssento = numeroDoAssento;
+        this.espetaculo = espetaculo;
     }
-    
-    /**
-     * Método abstrato para calcular o valor da entrada.
-     * As classes filhas devem implementar esta lógica.
-     * [cite: 52]
-     */
+
     public abstract double calculaValor();
+
+    public int getNumeroDoAssento() { 
+        return numeroDoAssento; 
+    }
 }
