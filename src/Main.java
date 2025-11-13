@@ -13,7 +13,7 @@ public class Main {
             System.out.println("3) Compra de Entradas");
             System.out.println("4) Sair");
             System.out.print("Selecione uma opção: ");
-            pc = sc.nextLine().trim();
+            opc = sc.nextLine().trim();
 
             switch (opc) {
                 case "1":
