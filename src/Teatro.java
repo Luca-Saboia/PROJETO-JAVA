@@ -1,5 +1,3 @@
-package teatro;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,15 +43,19 @@ public class Teatro {
         }
         cliente.adicionaPedido(carrinho);
         for (Entrada e : carrinho.getEntradas())
-            e.espetaculo.marcarAssento(e.getNumeroDoAssento());
+            e.getEspetaculo().marcarAssento(e.getNumeroDoAssento());
         double total = carrinho.calculaValorTotal();
         carrinho = null;
         espetaculoSelecionado = null;
         return total;
     }
 
-    public void adicionaEspetaculo(Espetaculo e) { espetaculos.add(e); }
-    public void adicionaCliente(Cliente c) { clientes.add(c); }
+    public void adicionaEspetaculo(Espetaculo e) { 
+        espetaculos.add(e); 
+    }
+    public void adicionaCliente(Cliente c) {
+         clientes.add(c); 
+    }
 
     public Cliente buscarClientePorCPF(String cpf) {
         for (Cliente c : clientes) if (c.getCpf().equals(cpf)) return c;

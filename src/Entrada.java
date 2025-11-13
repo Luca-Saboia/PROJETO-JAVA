@@ -1,8 +1,6 @@
-package teatro;
-
 public abstract class Entrada {
-    protected int numeroDoAssento;
-    protected Espetaculo espetaculo;
+    private int numeroDoAssento;
+    private Espetaculo espetaculo;
 
     public Entrada(int numeroDoAssento, Espetaculo espetaculo) {
         this.numeroDoAssento = numeroDoAssento;
@@ -13,5 +11,9 @@ public abstract class Entrada {
 
     public int getNumeroDoAssento() { 
         return numeroDoAssento; 
+    }
+
+    public Espetaculo getEspetaculo() {
+        return espetaculo;
     }
 }

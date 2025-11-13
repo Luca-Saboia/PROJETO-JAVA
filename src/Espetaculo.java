@@ -1,5 +1,3 @@
-package teatro;
-
 public class Espetaculo {
     private String nome;
     private String data;

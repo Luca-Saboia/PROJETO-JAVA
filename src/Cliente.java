@@ -1,5 +1,3 @@
-package teatro;
-
 import java.util.ArrayList;
 import java.util.List;
 
